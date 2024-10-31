@@ -1,6 +1,6 @@
 version: '3'
 services:
-  magic:
+  orchestrator:
     image: mageai/mageai:latest
     command: mage start ${PROJECT_NAME}
     env_file:
@@ -21,7 +21,9 @@ services:
     volumes:
       - .:/home/src/
       - ~/Documents/secrets/personal-gcp.json:/home/src/personal-gcp.json
+      - ./profiles.yml:/root/.dbt/profiles.yml
     restart: on-failure:5
+
   postgres:
     image: postgres:14
     restart: on-failure
